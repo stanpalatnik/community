@@ -14,13 +14,13 @@
         "ClientInstanceType": {
             "Description": "The EC2 instance type for the client nodes in the cluster",
             "Type": "String",
-            "Default": "m5.large"
+            "Default": "m5n.large"
         },
         "ClientNodeCount": {
             "Description": "The number of client/kibana nodes to deploy in the cluster",
             "Type": "String",
             "AllowedPattern": "^(\\d{1,2})",
-            "Default": "2"
+            "Default": "3"
         }
     },
     "Mappings": {
@@ -48,7 +48,7 @@
         "ClientNodesLC": {
             "Type": "AWS::AutoScaling::LaunchConfiguration",
             "Properties": {
-                "AssociatePublicIpAddress": true,
+                "AssociatePublicIpAddress": false,
                 "LaunchConfigurationName": {
                     "Fn::Join": ["", [{
                         "Fn::ImportValue": {
@@ -253,8 +253,9 @@
                     }, "-clientnodes-lc"]]
                 },
                 "VPCZoneIdentifier": [
-                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PublicSubnet0"}},
-                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PublicSubnet1"}}
+                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp0"}},
+                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp1"}},
+                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp2"}}
                 ]
             }
         }

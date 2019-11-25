@@ -124,6 +124,7 @@
                                         "",
                                         [
                                         "cluster.name: od4es\n",
+                                        "cluster.routing.allocation.awareness.attributes: rack_id\n",
                                         "node.name: master-node\n",
                                         "path.data: /var/lib/elasticsearch\n",
                                         "path.logs: /var/log/elasticsearch\n",
@@ -223,7 +224,8 @@
                 },
                 "VPCZoneIdentifier": [
                     { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp0"}},
-                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp1"}}
+                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp1"}},
+                    { "Fn::ImportValue" : {"Fn::Sub": "${NetworkStackName}-PrivateSubnetApp2"}}
                 ]
             }
         }

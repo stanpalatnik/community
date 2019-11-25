@@ -10,11 +10,11 @@ The deployment uses CloudFormation's [nested stacks](https://docs.aws.amazon.com
 
 ## od4es.json
 
-This is the root stack, that you deploy directly via the CloudFormation console. It contains links to the other stacks that will create a VPC, create a seed node for bootstrapping an ES 7 cluster, create master nodes, create data nodes, and create a client node with a public IP address.
+This is the root stack, that you deploy directly via the CloudFormation console. It contains links to the other stacks that will create a VPC, create a seed node for bootstrapping an ES 7 cluster, create master nodes, create data nodes, and create a client node with a private IP address.
 
 ## network.json
 
-Deploys an [Amazon VPC](https://aws.amazon.com/vpc/) to provide secure networking for the Open Distro for Elasticsearch cluster. The VPC spans 2 availability zones, with a public and a private subnet in each of those zones. The stack adds an Internet Gateway for outbound traffic and a NAT gateway for inbound traffic. EC Instances in the public subnet can have public IP addresses; the seed node, and the client node are publicly accessible.
+Deploys an [Amazon VPC](https://aws.amazon.com/vpc/) to provide secure networking for the Open Distro for Elasticsearch cluster. The VPC spans 3 availability zones, with a private subnet in each of those zones.
 
 ## seed.json
 
